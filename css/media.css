@@ -1,0 +1,66 @@
+/* @media (max-width: 1400px) {
+  .hero__descr {
+    flex: 0 0 50%;
+    padding-right: 30px;
+    transform: translateX(-15%);
+  }
+} */
+
+@media (max-width : 1280px) {
+  /* .hero__descr {
+    max-width: 50%;
+  } */
+
+  .hero__title {
+    font-size: 61px;
+  }
+
+  /* .about__descr,
+  .instagram__descr {
+    flex-basis: 55%;
+    padding-right: 45px;
+  }
+
+  .about__img,
+  .instagram__img {
+    flex-basis: 45%;
+  } */
+}
+
+/* @media (max-width: 1180px) {
+  .hero__descr {
+    flex-basis: 30%;
+    transform: translateX(-50%);
+  }
+} */
+
+
+@media (max-width: 1024px) {
+}
+
+@media (max-width : 800px)  {
+
+}
+
+@media (max-width: 768px) {
+}
+
+@media (max-width : 600px)  {
+
+}
+
+@media (max-width : 533px)  {
+
+}
+
+@media (max-width: 480px) {
+
+}
+
+@media (max-width : 360px)  {
+
+}
+
+@media only screen and (max-width : 320px)  {}
+@media only screen and (max-width : 240px)  {}
+@media only screen and (max-width : 176px)  {}
