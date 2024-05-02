@@ -150,17 +150,20 @@ p {
 /* header */
 
 .header {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   background-color: transparent;
   z-index: 10;
+  transition: background-color .3s ease-in-out;
 }
 
-/* .header--fixed {
+.header--fixed {
+  position: fixed;
   background-color: var(--black);
-} */
+  transition: background-color .3s ease-in-out;
+}
 
 .header__container {
   display: flex;
@@ -177,7 +180,7 @@ p {
 }
 
 .nav__link {
-  padding: 32px 24px;
+  padding: 26px 24px;
   font-weight: 400;
   font-size: 16px;
   transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
@@ -1014,6 +1017,10 @@ line-height: 150%;
 @media (any-hover: hover) {
   .nav__link:hover {
     color: var(--purple);
+  }
+
+  .nav__link--active:hover {
+    color: var(--white);
   }
 
   .skillset-icons__icon:hover {

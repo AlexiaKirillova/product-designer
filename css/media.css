@@ -96,11 +96,13 @@
     line-height: 23px;
   }
 
-  .about__title, .instagram__title {
+  .about__title,
+  .instagram__title {
     font-size: 50px;
   }
 
-  .about__text, .instagram__text {
+  .about__text,
+  .instagram__text {
     font-size: 16px;
   }
 
@@ -134,7 +136,8 @@
     gap: 47px 24px;
   }
 
-  .projects__item:nth-child(2), .projects__item:nth-child(4) {
+  .projects__item:nth-child(2),
+  .projects__item:nth-child(4) {
     transform: unset;
   }
 
@@ -230,7 +233,7 @@
     padding: 40px;
     width: 60%;
     max-width: 360px;
-    height: calc(100vh - var(--header-height));
+    max-height: calc(100vh - var(--header-height));
     background-color: var(--black);
     transform: translateX(100%);
     transition: transform .6s ease-in-out;
