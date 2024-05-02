@@ -1,9 +1,67 @@
 document.addEventListener('DOMContentLoaded', () => {
+  // fixed menu
+  const observer = new IntersectionObserver((entries) => {
+    console.log(entries);
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        document.querySelectorAll('.nav__link').forEach((link) => {
+          let id = link.getAttribute('href').replace('#', '');
+          if (id === entry.target.id) {
+            link.classList.add('nav__link--active');
+          } else {
+            link.classList.remove('nav__link--active');
+          }
+        });
+      }
+    });
+  }, {
+    threshold: 0.5
+  });
+  
+  document.querySelectorAll('.section').forEach(section => { observer.observe(section)} );
 
-  // swiper for svg icons
+  //burger
+  const burger = document?.querySelector('[data-burger]');
+  const nav = document?.querySelector('[data-nav]');
+  const navItems = nav?.querySelectorAll('a')
+  const body = document.body;
+  const header = document?.querySelector('.header');
+  const headerHeight = header.offsetHeight;
+  console.log(headerHeight)
+  document.querySelector(':root').style.setProperty('--header-height', `${headerHeight}px`);
+
+  burger?.addEventListener('click', () => {
+    body.classList.toggle('stop-scroll');
+    burger.classList.toggle('burger__btn--active');
+    nav.classList.toggle('header__nav--visible');
+  });
+
+  navItems.forEach(el => {
+    el.addEventListener('click', () => {
+      body.classList.remove('stop-scroll');
+      burger.classList.remove('burger__btn--active');
+      nav.classList.remove('header__nav--visible');  
+    })
+  })
+  
+
+  // swiper for skillset icons
   const swiper = new Swiper('#swiperSkillset', {
-    loop: true,
-    slidesPerView: 4
+    slidesPerView: 2,
+    grid: {
+      fill: 'row',
+      rows: 3,
+    },
+    loop: false,
+    breakpoints: {
+      769: {
+        loop: true,
+        slidesPerView: 4,
+        grid: {
+          rows: 1,
+        },        
+      },
+    },
   });
 
 
@@ -11,6 +69,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const tabBtn = document.querySelectorAll('.btns-tabs__btn');
   const tabContent = document.querySelectorAll('.content-tabs__list');
+
+  // tabBtn.forEach (el => {
+  //   el.offsetWidth
+  //   console.log(el.offsetWidth)
+  // })
+
+
+  // let tabBtnWidth = Array.from(tabBtn.offsetWidth);
+  // tabBtn.forEach (el => {
+  //   console.log(el.offsetWidth);
+  // });
+    // el.offsetWidth;
+
+    // let arr = new Array(el.offsetWidth);
+    // console.log(arr)
+  // const tabBtnWidthMax = Math.max(tabBtnWidth);
+  // document.querySelector(':root').style.setProperty('--tabBtn-width', `${tabBtnWidth}px`);
+
     
   function openTabContent (e) {
     const currentBtn = e.currentTarget;

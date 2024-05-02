@@ -49,15 +49,20 @@ p {
   font-style: normal;
 }
 
-[class*=__container] {
+[class*=__container],
+[class*=__wrapper] {
   max-width: 1440px;
-  padding: 0 72px;
   margin: 0 auto;
+}
+
+[class*=__container] {
+  padding: 0 72px;
 }
 
 .page__body {
   margin: 0;
   min-width: 360px;
+  /* min-height: 100vh; */
   font-family: var(--font-family);
   background-color: var(--black);
   color: var(--white);
@@ -145,7 +150,7 @@ p {
 /* header */
 
 .header {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -162,7 +167,7 @@ p {
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  min-height: 88px;
+  min-height: 72px;
 }
 
 .nav__list {
@@ -175,7 +180,7 @@ p {
   padding: 32px 24px;
   font-weight: 400;
   font-size: 16px;
-  transition: color 0.3s ease-in-out,  background-color 0.3s ease-in-out;
+  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
 }
 
 .nav__link:focus {
@@ -197,14 +202,47 @@ p {
   background-color: var(--purple);
 }
 
-/* .header__btn {
-  padding: 32px 24px;
-  font-family: inherit;
-  font-weight: 700;
-  font-size: 16px;
-  color: var(--white);
-  background-color: var(--purple);
-} */
+.burger__btn {
+  display: none;
+  position: relative;
+  width: 24px;
+  height: 24px;
+}
+
+.burger__btn::before {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50%;
+  height: 2px;
+  background-color: var(--white);
+  transition: transform .3s ease-in-out, width .3s ease-in-out;
+}
+
+.burger__btn::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--white);
+  transition: transform .3s ease-in-out;
+}
+
+.burger__btn--active::before {
+  width: 100%;
+  transform: rotate(45deg);
+  transition: transform .3s ease-in-out, width .3s ease-in-out;
+}
+
+.burger__btn--active::after {
+  top: 50%;
+  transform: rotate(-45deg);
+  transition: transform .3s ease-in-out;
+}
 
 /* hero */
 
@@ -214,7 +252,7 @@ p {
   padding-bottom: 85px;
 }
 
-.hero::after {
+/* .hero::after {
   position: absolute;
   content: "";
   top: 0;
@@ -223,19 +261,17 @@ p {
   right: 0;
   background-color: var(--level-1);
   z-index: 1;
-}
+} */
 
 .hero__wrapper {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: stretch;
-  max-width: 1440px;
-  margin: 0 auto;
 }
 
 /* ИМХО, так лучше смотрится, чем .hero::after */
-/* .hero__wrapper::after {
+.hero__wrapper::after {
   position: absolute;
   content: "";
   top: -26%;
@@ -244,30 +280,26 @@ p {
   right: 0;
   background-color: var(--level-1);
   z-index: 1;
-} */
+}
 
 .hero__img {
   position: relative;
   flex: 0 1 52%;
-  /* width: 100%; */
-  /* transform: translateX(6%); */
   z-index: 2;
 }
 
-/* .hero_bg {
-  max-height: 100%;
-} */
+.hero__bg {
+  width: 750px;
+  height: 650px;
+}
 
 .hero__descr {
   position: relative;
   display: flex;
   flex-direction: column;
-  /* max-width: 52%; */
   flex: 0 1 53%;
-  /* max-width: fit-content; */
-  transform: translateX(-10%);
+  transform: translateX(-8%);
   z-index: 3;
-  /* padding-right: 40px; */
 }
 
 .hero__title {
@@ -356,14 +388,8 @@ p {
   background-color: var(--peach-accent);
 }
 
-.about__container {
-  display: flex;
-  padding-left: 0;
-  padding-right: 0;
-  /* background-image: url("../img/about-bg.jpg");
-  background-repeat: no-repeat;
-  background-position-x: right;
-  background-size: 720px 600px; */
+.about__wrapper {
+  gap: 0;
 }
 
 .about__title {
@@ -372,9 +398,9 @@ p {
 }
 
 .about__descr {
-  flex: 47%;
+  grid-column: 6 span;
   padding-top: 120px;
-  padding-bottom: 120px;
+  padding-bottom: 30px;
   padding-right: 72px;
   padding-left: 72px;
 }
@@ -400,6 +426,12 @@ p {
   height: 1px;
   width: 100%;
   background-color: var(--dark-grey);
+}
+
+.about__img {
+  grid-column: 6 span;
+  width: 720px;
+  height: 600px;
 }
 
 /* skillset */
@@ -497,6 +529,10 @@ p {
   stroke: #181823;
 }
 
+.skillset__slide {
+  display: flex;
+}
+
 /* projects */
 
 .projects {
@@ -517,6 +553,14 @@ p {
   margin-bottom: 80px;
 }
 
+.projects__cards {
+  gap: 0 24px;
+}
+
+.projects__list {
+  grid-column: 12 span;
+}
+
 .projects__item {
   background-color: var(--level-1);
   grid-column: 6 span;
@@ -526,7 +570,7 @@ p {
   padding: 636px 32px 40px;
 } */
 
-.projects-card__wrapper {
+.projects-card__text {
   padding: 15px 32px 40px;
 }
 
@@ -556,12 +600,16 @@ p {
 }
 
 .projects__lnk {
-  display: block;
+  display: grid;
   padding: 24px 32px;
   width: fit-content;
   font-weight: 700;
   font-size: 18px;
-  transform: translate(345%, -207%);
+  grid-column: 6 span;
+  grid-column-start: 8;
+  grid-column-end: 12;
+  margin: 0 auto;
+  transform: translateY(-215%);
   transition: background-color 0.3s ease-in-out;
 }
 
@@ -590,23 +638,22 @@ p {
   background-color: var(--violet-accent);
 }
 
-.instagram__container {
-  display: flex;
-  padding-right: 0;
-  padding-left: 0;
+.instagram__wrapper {
+  gap: 0;
+}
+
+.instagram__descr {
+  grid-column: 6 span;
+  /* flex: 47%; */
+  padding-top: 120px;
+  padding-bottom: 30px;
+  padding-right: 72px;
+  padding-left: 72px;
 }
 
 .instagram__title {
   margin-bottom: 28px;
   color: var(--level-1);
-}
-
-.instagram__descr {
-  flex: 47%;
-  padding-top: 120px;
-  padding-bottom: 120px;
-  padding-right: 72px;
-  padding-left: 72px;
 }
 
 .instagram__text {
@@ -630,6 +677,12 @@ p {
   height: 1px;
   width: 100%;
   background-color: var(--light-grey);
+}
+
+.instagram__img {
+  grid-column: 6 span;
+  width: 720px;
+  height: 600px;
 }
 
 /* dribbble */
@@ -901,7 +954,7 @@ line-height: 150%;
   background: var(--level-1);
 }
 
-.footer__wrapper {
+.footer__top {
   margin-bottom: 75px;
 }
 
@@ -954,6 +1007,7 @@ line-height: 150%;
 }
 
 .footer__copy {
+  line-height: 150%;
   color: var(--light-grey);
 }
 
@@ -972,6 +1026,10 @@ line-height: 150%;
   }
 
   .projects__lnk:hover {
+    background-color: var(--level-1);
+  }
+
+  .contacts__button:hover {
     background-color: var(--level-1);
   }
 
